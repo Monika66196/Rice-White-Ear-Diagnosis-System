@@ -21,14 +21,14 @@ st.set_page_config(
 # --------------------------------------------------
 @st.cache_resource
 def load_model():
-
     model = tf.keras.models.load_model(
         "Rice_Final_Model.keras",
-        compile=False,
-        safe_mode=False
+        compile=False
     )
-
     return model
+
+
+model = load_model()
 
 # --------------------------------------------------
 # Sidebar
@@ -110,23 +110,19 @@ else:
 # --------------------------------------------------
 if image is not None:
 
-    st.image(
-        image,
-        caption="Selected Image",
-        use_container_width=True
-    )
+    st.image(image, use_container_width=True)
 
-    img = image.resize((224, 224))
-    img = np.array(img).astype("float32") / 255.0
+    img = image.resize((224,224))
+
+    img = np.array(img) / 255.0
+
     img = np.expand_dims(img, axis=0)
 
     prediction = model.predict(img, verbose=0)
 
     predicted_class = np.argmax(prediction)
 
-    predicted_label = CLASS_NAMES[predicted_class]
-
-    confidence = float(np.max(prediction)) * 100
+    confidence = np.max(prediction)*100
 
     st.success(f"Prediction : {predicted_label}")
 
