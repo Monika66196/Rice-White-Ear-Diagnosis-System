@@ -131,28 +131,74 @@ if image is not None:
     for i, cls in enumerate(CLASS_NAMES):
         st.progress(float(prediction[0][i]))
         st.write(f"{cls}: {prediction[0][i]*100:.2f}%")
+# Yield Loss Estimation
 
-        yield_loss_data = {
+yield_loss_data = {
     "Healthy": {
-        "Relative Grain Yield (%)": 100.00,
-        "Yield Loss (%)": 0.00
+        "Relative Grain Yield": 100.00,
+        "Yield Loss": 0.00
     },
     "Severity_1_25": {
-        "Relative Grain Yield (%)": 85.46,
-        "Yield Loss (%)": 14.54
+        "Relative Grain Yield": 85.46,
+        "Yield Loss": 14.54
     },
     "Severity_26_50": {
-        "Relative Grain Yield (%)": 67.41,
-        "Yield Loss (%)": 32.59
+        "Relative Grain Yield": 67.41,
+        "Yield Loss": 32.59
     },
     "Severity_51_75": {
-        "Relative Grain Yield (%)": 43.86,
-        "Yield Loss (%)": 56.14
+        "Relative Grain Yield": 43.86,
+        "Yield Loss": 56.14
     },
     "Severity_76_100": {
-        "Relative Grain Yield (%)": 20.00,
-        "Yield Loss (%)": 80.00
+        "Relative Grain Yield": 20.00,
+        "Yield Loss": 80.00
     }
 }
 
-        
+
+st.subheader("Yield Loss Estimation")
+
+
+if predicted_class in yield_loss_data:
+
+    result = yield_loss_data[predicted_class]
+
+    st.write(
+        f"Relative Grain Yield: {result['Relative Grain Yield']}%"
+    )
+
+    st.write(
+        f"Estimated Yield Loss: {result['Yield Loss']}%"
+    )
+
+
+# Loss graph
+st.write("### Loss Curve")
+
+fig, ax = plt.subplots()
+
+ax.plot(history_df["loss"], label="Training Loss")
+ax.plot(history_df["val_loss"], label="Validation Loss")
+
+ax.set_xlabel("Epoch")
+ax.set_ylabel("Loss")
+ax.legend()
+
+st.pyplot(fig)
+
+
+
+# Accuracy graph
+st.write("### Accuracy Curve")
+
+fig, ax = plt.subplots()
+
+ax.plot(history_df["accuracy"], label="Training Accuracy")
+ax.plot(history_df["val_accuracy"], label="Validation Accuracy")
+
+ax.set_xlabel("Epoch")
+ax.set_ylabel("Accuracy")
+ax.legend()
+
+st.pyplot(fig)
