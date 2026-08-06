@@ -130,6 +130,7 @@ if image is not None:
 
     for i, cls in enumerate(CLASS_NAMES):
         st.progress(float(prediction[0][i]))
+<<<<<<< HEAD
         st.write(f"{cls}: {prediction[0][i]*100:.2f}%")
 # Yield Loss Estimation
 
@@ -202,3 +203,6 @@ ax.set_ylabel("Accuracy")
 ax.legend()
 
 st.pyplot(fig)
+=======
+        st.write(f"{cls}: {prediction[0][i]*100:.2f}%")
+>>>>>>> e89e3ad77faeaf035473fee9c6f04bbb59e8a7b3

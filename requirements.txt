@@ -2,9 +2,12 @@ streamlit
 tensorflow
 numpy
 Pillow
+<<<<<<< HEAD
 opencv-python
 matplotlib
 scikit-learnstreamlit
 tensorflow
 numpy
 Pillow
+=======
+>>>>>>> e89e3ad77faeaf035473fee9c6f04bbb59e8a7b3

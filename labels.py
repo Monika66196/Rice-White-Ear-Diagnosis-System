@@ -1,0 +1,1 @@
+CLASS_NAMES=["Healthy","Severity 1-25%","Severity 26-50%","Severity 51-75%","Severity 76-100%"]
