@@ -128,25 +128,35 @@ if image is not None:
 
     img = np.expand_dims(img, axis=0)
 
+
     prediction = model.predict(img, verbose=0)
+
 
     predicted_class = np.argmax(prediction)
 
+    predicted_label = CLASS_NAMES[predicted_class]
+
+
     confidence = np.max(prediction)*100
 
-    st.success(f"Prediction : {predicted_label}")
 
-    st.info(f"Confidence : {confidence:.2f}%")
+    st.success(
+        f"Prediction : {predicted_label}"
+    )
+
+    st.info(
+        f"Confidence : {confidence:.2f}%"
+    )
+
 
     st.subheader("Class Probabilities")
 
+
     for i, cls in enumerate(CLASS_NAMES):
 
-        st.write(f"**{cls}**")
-
-        st.progress(float(prediction[0][i]))
-
-        st.write(f"{prediction[0][i]*100:.2f}%")
+        st.write(
+            f"{cls}: {prediction[0][i]*100:.2f}%"
+        )
 
             # ==================================================
     # Yield Loss Estimation
