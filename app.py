@@ -110,16 +110,21 @@ else:
     else:
         st.warning("Samples folder not found.")
 
-# --------------------------------------------------
+model = load_model()
+
+if model is None:
+    st.error("Model load failed")
+    st.stop()
+
+
 # Prediction
-# --------------------------------------------------
 if image is not None:
 
     st.image(image, use_container_width=True)
 
     img = image.resize((224,224))
 
-    img = np.array(img) / 255.0
+    img = np.array(img)/255.0
 
     img = np.expand_dims(img, axis=0)
 
