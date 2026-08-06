@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Python cache
-=======
-*.keras# Python cache
->>>>>>> e89e3ad77faeaf035473fee9c6f04bbb59e8a7b3
 __pycache__/
 *.py[cod]
 *.pyo
@@ -25,8 +21,5 @@ venv/
 
 # Logs
 *.log
-<<<<<<< HEAD
-*.keras
-=======
- *.keras*.keras
->>>>>>> e89e3ad77faeaf035473fee9c6f04bbb59e8a7b3
+
+# Do not ignore Keras model
