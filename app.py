@@ -21,12 +21,14 @@ st.set_page_config(
 # --------------------------------------------------
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model(
+
+    model = tf.keras.models.load_model(
         "Rice_Final_Model.keras",
-        compile=False
+        compile=False,
+        safe_mode=False
     )
 
-model = load_model()
+    return model
 
 # --------------------------------------------------
 # Sidebar
